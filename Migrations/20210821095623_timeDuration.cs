@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace beltExam.Migrations
 {
-    public partial class first : Migration
+    public partial class timeDuration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -35,6 +35,8 @@ namespace beltExam.Migrations
                     ActivityName = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: false),
                     Duration = table.Column<int>(type: "int", nullable: false),
                     ActivityDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    ActivityTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Description = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false)

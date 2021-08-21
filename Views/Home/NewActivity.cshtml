@@ -27,17 +27,20 @@
         <label asp-for="Duration">Duration: </label>
         <span asp-validation-for="Duration"></span>
         <input asp-for="Duration" />
-        <select asp-for="Duration">
-            <option value="Hours">Hours</option>
-            <option value="Minutes">Minutes</option>
-            <option value="Days">Days</option>
-        </select>
     </div>
+    @* <div>
+        <span asp-validation-for="TimeDuration"></span>
+        <select asp-for="TimeDuration">
+        <option value="Hours">Hours</option>
+        <option value="Minutes">Minutes</option>
+        <option value="Days">Days</option>
+        </select>
+        </div> *@
     <div>
         <label asp-for="Description">Description: </label>
         <span asp-validation-for="Description"></span>
         <textarea asp-for="Description"></textarea>
     </div>
-    </div>
     <button>Create</button>
+    </div>
 </form>

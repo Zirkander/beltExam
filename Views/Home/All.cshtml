@@ -1,7 +1,7 @@
 @model List<BeltExam>
-@{
+@* @{
     BeltExam emptyBeltExam = new BeltExam();
-}
+    } *@
 
 
 <body>
@@ -33,8 +33,7 @@
                             asp-route-activityId="@belt.ActivityId">@belt.ActivityName</a></td>
                         <td>@belt.ActivityDate.ToString("MM/dd yyyy") @belt.ActivityTime.ToString("HH:MM tt")</td>
                         <td>@belt.Duration</td>
-                        <td>@belt.User.FirstName</td>
-                        @* #of people that have RSVP'd *@
+                        @* <td>@belt.User.FirstName</td> *@
                         <td>@belt.ActiveUser.Count</td>
                         <td>
                             @if (belt.UserId == Context.Session.GetInt32("UserId"))

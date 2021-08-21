@@ -24,15 +24,6 @@ namespace beltExamActivity
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // services.AddDefaultIdentity<ApplicationIdentityDbContext, ApplicationUser, IdentityRole>(Configuration,
-            // o =>
-            // {
-            //     o.Password.RequireDigit = false;
-            //     o.Password.RequireLowercase = false;
-            //     o.Password.RequireUppercase = false;
-            //     o.Password.RequireNonLetterOrDigit = false;
-            //     o.Password.RequiredLength = 7;
-            // });
             services.AddDbContext<BeltExamContext>(options => options.UseMySql(
             Configuration["DBInfo:ConnectionString"],
             ServerVersion.FromString("8.0.23-mysql")));

@@ -154,6 +154,7 @@ namespace beltExamActivity.Controllers
 
             if (ModelState.IsValid == false)
             {
+                Console.WriteLine("Fail");
                 return View("NewActivity");
             }
             if (newActivity.ActivityDate < DateTime.Now)

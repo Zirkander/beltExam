@@ -9,8 +9,8 @@ using beltExamActivity.Models;
 namespace beltExam.Migrations
 {
     [DbContext(typeof(BeltExamContext))]
-    [Migration("20210820180943_first")]
-    partial class first
+    [Migration("20210821095623_timeDuration")]
+    partial class timeDuration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -59,8 +59,15 @@ namespace beltExam.Migrations
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<DateTime>("ActivityTime")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("Duration")
                         .HasColumnType("int");

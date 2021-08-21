@@ -18,6 +18,9 @@ namespace beltExamActivity.Models
         [Display(Name = "Duration")]
         public int Duration { get; set; }
 
+        // [Display(Name = "Time Duration")]
+        // public int TimeDuration { get; set; }
+
         [Required(ErrorMessage = "Is required!")]
         [DataType(DataType.Date)]
         [Display(Name = "Activity Date")]
