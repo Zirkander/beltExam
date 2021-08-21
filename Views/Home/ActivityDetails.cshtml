@@ -1,0 +1,49 @@
+@model BeltExam
+
+
+<div style="display: flex; justify-content: space-between;">
+    <h2>Dojo Activity Center</h2>
+    <div>
+        <a asp-controller="Home" asp-action="All">Dashboard</a> | <form asp-controller="Home" asp-action="Logout"
+            method="POST"><button class="btn btn-link">Logout</button></form>
+    </div>
+</div>
+<div>
+    <h5>@Model.ActivityName</h5>
+    @{
+        bool alreadyGoing = @Model.ActiveUser.Any(r => Context.Session.GetInt32("UserId") == r.UserId);
+        if (@Model.UserId == Context.Session.GetInt32("UserId"))
+        {
+            <form asp-controller="Home" asp-action="Delete" asp-route-activityId="@Model.ActivityId" method="POST">
+                <button class="btn btn-outline-danger btn-link">Delete</button>
+            </form>
+        }
+        else
+        {
+            <form asp-controller="Home" asp-action="Join" asp-route-activityId="@Model.ActivityId">
+                @if (alreadyGoing)
+                {
+                    <button class="btn btn-outline-Warning btn-link">Leave</button>
+                }
+                else
+                {
+                    <button class="btn btn-outline-Success btn-link">Join</button>
+                }
+            </form>
+        }
+    }
+</div>
+<div>Event Coordinator: @Model.User.FirstName</div>
+<div>
+    <p>@Model.Description</p>
+</div>
+
+
+<div>
+    <div>Participants:</div>
+    @foreach (var Participant in Model.ActiveUser)
+    {
+        <p>@Participant.User.FirstName @Participant.User.LastName</p>
+        <hr>
+    }
+</div>

@@ -1,0 +1,43 @@
+@model BeltExam
+
+<div style="display: flex; justify-content: space-between;">
+    <h2>Dojo Activity Center</h2>
+    <div>
+        <a asp-controller="Home" asp-action="All">Dashboard</a> | <form asp-controller="Home" asp-action="Logout"
+            method="POST"><button class="btn btn-link">Logout</button></form>
+    </div>
+</div>
+<form asp-controller="Home" asp-action="NewActivity" method="POST">
+    <div>
+        <label asp-for="ActivityName">Title: </label>
+        <span asp-validation-for="ActivityName"></span>
+        <input asp-for="ActivityName" />
+    </div>
+    <div>
+        <label asp-for="ActivityDate">Date: </label>
+        <span asp-validation-for="ActivityDate"></span>
+        <input asp-for="ActivityDate" />
+    </div>
+    <div>
+        <label asp-for="ActivityTime">Time: </label>
+        <span asp-validation-for="ActivityTime"></span>
+        <input asp-for="ActivityTime" />
+    </div>
+    <div>
+        <label asp-for="Duration">Duration: </label>
+        <span asp-validation-for="Duration"></span>
+        <input asp-for="Duration" />
+        <select asp-for="Duration">
+            <option value="Hours">Hours</option>
+            <option value="Minutes">Minutes</option>
+            <option value="Days">Days</option>
+        </select>
+    </div>
+    <div>
+        <label asp-for="Description">Description: </label>
+        <span asp-validation-for="Description"></span>
+        <textarea asp-for="Description"></textarea>
+    </div>
+    </div>
+    <button>Create</button>
+</form>

@@ -1,0 +1,72 @@
+@model List<BeltExam>
+@{
+    BeltExam emptyBeltExam = new BeltExam();
+}
+
+
+<body>
+    <div style="display: flex; justify-content: space-between;">
+        <h2>Welcome to the Dojo Activity Center</h2>
+        <div>
+            <a asp-controller="Home" asp-action="All">Dashboard</a> | <form asp-controller="Home" asp-action="Logout"
+                method="POST"><button class="btn btn-link">Logout</button></form>
+        </div>
+    </div>
+    <div>
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Activity</th>
+                    <th scope="col">Date and time</th>
+                    <th scope="col">Duration</th>
+                    <th scope="col">Event Coordinator</th>
+                    <th scope="col">No. of Participants</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (BeltExam belt in Model)
+                {
+                    bool alreadyGoing = belt.ActiveUser.Any(r => Context.Session.GetInt32("UserId") == r.UserId);
+                    <tr>
+                        <td><a asp-controller="Home" asp-action="ActivityDetails"
+                            asp-route-activityId="@belt.ActivityId">@belt.ActivityName</a></td>
+                        <td>@belt.ActivityDate.ToString("MM/dd yyyy") @belt.ActivityTime.ToString("HH:MM tt")</td>
+                        <td>@belt.Duration</td>
+                        <td>@belt.User.FirstName</td>
+                        @* #of people that have RSVP'd *@
+                        <td>@belt.ActiveUser.Count</td>
+                        <td>
+                            @if (belt.UserId == Context.Session.GetInt32("UserId"))
+                            {
+                                <form asp-controller="Home" asp-action="Delete" asp-route-activityId="@belt.ActivityId"
+                            method="POST">
+                                    <button class="btn btn-outline-danger btn-link">Delete</button>
+                                </form>
+                            }
+                            else
+                            {
+                                <form asp-controller="Home" asp-action="Join" asp-route-activityId="@belt.ActivityId">
+                                    @if (alreadyGoing)
+                                    {
+                                        <button class="btn btn-link">Leave</button>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn btn-link">Join</button>
+                                    }
+                                </form>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <a href="/NewActivity">New Activity</a>
+    </div>
+    </div>
+    </div>
+
+</body>
+
+</html>
